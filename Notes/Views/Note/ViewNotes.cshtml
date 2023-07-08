@@ -1,0 +1,47 @@
+﻿@model List<Notes.Dto.NoteDto>;
+
+@{
+    ViewData["Title"] = "GetAllNotes";
+}
+
+<div class="text-center">
+    <div>
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr class="table-active">
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var note in Model)
+                    {
+                        <tr>
+                            <td contenteditable="true" id="editedTitle-@note.Id">@note.Title</td>
+                            <td contenteditable="true" id="editedContent-@note.Id">@note.Content</td>
+                            <td>
+                                <button type="button" onclick="submitForm(event,@note.Id)">Update</button>
+                                <a asp-controller="Note" asp-action="DeleteNote" asp-route-id="@note.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            <div>
+                                No Notes available at this moment!
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

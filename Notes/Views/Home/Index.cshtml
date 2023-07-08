@@ -1,0 +1,27 @@
+﻿@model Notes.Data.Models.Note;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Notes</h1>
+
+    <div>
+        <button onclick="addNote()">Add New Note</button>
+    </div>
+
+    <div>
+        <form asp-action="CreateNote" asp-controller="Note" method="POST" class="notes" id="noteInfo">
+            <label asp-for="Title"></label>
+            <textarea asp-for="Title" class="notebox" id="title"></textarea>
+
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" class="notebox" id="content"></textarea>
+
+            <button>Submit</button>
+        </form>
+    </div>
+
+</div>
+
